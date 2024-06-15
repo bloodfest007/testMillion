@@ -31,8 +31,3 @@ El archivo `azure-pipelines.yml` configura un pipeline de CI/CD en Azure DevOps.
 3. **Ejecutar Pruebas Unitarias**: Ejecuta las pruebas unitarias utilizando `unittest`.
 4. **Construir y Publicar Imagen Docker**: Construye y publica la imagen Docker en un registro de contenedores.
 5. **Publicar Artefacto**: Publica el `Dockerfile` como un artefacto.
-
-## Diagrama de Observabilidad
-El archivo `observability-diagram.png` ilustra la configuración de observabilidad utilizando Prometheus y Grafana.
-
-![Diagrama de Observabilidad](observability-diagram.png)
