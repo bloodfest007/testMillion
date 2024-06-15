@@ -1,0 +1,46 @@
+# Define pool de agentes
+pool:
+  vmImage: 'ubuntu-latest'
+
+# Define variables globales
+variables:
+  buildConfiguration: 'Release'
+  pythonVersion: '3.9'
+
+# Define los trabajos de la pipeline
+jobs:
+- job: Build
+  displayName: 'Compilar, Validar Pruebas y Crear Artefacto'
+  steps:
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: '$(pythonVersion)'
+      addToPath: true
+
+  - script: |
+      python -m venv venv
+      source venv/bin/activate
+      pip install -r requirements.txt
+    displayName: 'Instalar Dependencias'
+
+  - script: |
+      echo "Compilando la aplicación..."
+      # Aquí colocarías los comandos específicos para compilar tu aplicación, si es necesario
+    displayName: 'Compilar Aplicación'
+
+  - script: |
+      echo "Ejecutando pruebas unitarias..."
+      python -m unittest discover -s tests
+    displayName: 'Ejecutar Pruebas Unitarias'
+
+  - script: |
+      echo "Creando artefacto..."
+      mkdir -p $(Build.ArtifactStagingDirectory)
+      cp -R * $(Build.ArtifactStagingDirectory)
+    displayName: 'Crear Artefacto'
+
+  - task: PublishBuildArtifacts@1
+    inputs:
+      PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+      ArtifactName: 'drop'
+      publishLocation: 'Container'
