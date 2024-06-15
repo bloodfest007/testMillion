@@ -1,4 +1,4 @@
-# Ejercicio de DevOps
+# Ejercicio
 
 ## Descripción General
 Este repositorio contiene la solución para el ejercicio de DevOps, incluyendo un Dockerfile, configuración de pod de Kubernetes, pipeline de Azure DevOps y un diagrama para mejorar la observabilidad.
